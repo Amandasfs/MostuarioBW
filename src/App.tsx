@@ -8,7 +8,7 @@ const App: React.FC = () => {
 
   // Atualiza a página baseado na URL ao carregar
   useEffect(() => {
-    const path = window.location.pathname;
+    const path = window.location.pathname.replace("/MostuarioBW", "");
     if (path === "/noivos") setPage("noivos");
     else if (path === "/lista-presentes") setPage("listaPresentes");
     else setPage("invitation");
@@ -16,8 +16,10 @@ const App: React.FC = () => {
 
   const navigate = (target: "invitation" | "noivos" | "listaPresentes") => {
     setPage(target);
-    window.history.pushState(null, "", target === "invitation" ? "/" : `/${target}`);
+    const base = "/MostuarioBW";
+    window.history.pushState(null, "", target === "invitation" ? base + "/" : `${base}/${target}`);
   };
+
 
   return (
     <>
